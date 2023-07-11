@@ -31,8 +31,8 @@ export class CoffeesController {
   create(@Body() createCoffeeDto: CreateCoffeeDto) {
     this.coffeesService.create(createCoffeeDto);
     return {
-      message: 'This action adds a new coffee',
-      createCoffeeDto,
+      message: 'Coffee has been created!',
+      coffee: { ...createCoffeeDto },
     };
   }
 
@@ -40,7 +40,7 @@ export class CoffeesController {
   update(@Param('id') id: string, @Body() updateCoffeeDto: UpdateCoffeeDto) {
     this.coffeesService.update(id, updateCoffeeDto);
     return {
-      message: `This action updates #${id} coffee`,
+      message: `Coffee ${id} has been updated!`,
       updateCoffeeDto,
     };
   }
