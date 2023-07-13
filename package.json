@@ -7,6 +7,7 @@
   "license": "UNLICENSED",
   "scripts": {
     "build": "nest build",
+    "generate-migration": "nest build && npx typeorm migration:generate src/migrations/SchemaSync -d dist/typeorm-cli.config",
     "format": "prettier --write \"src/**/*.ts\" \"test/**/*.ts\"",
     "start": "nest start",
     "start:dev": "nest start --watch",
