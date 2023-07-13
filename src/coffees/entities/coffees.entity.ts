@@ -8,7 +8,7 @@ import {
 } from 'typeorm';
 import { Flavor } from './flavor.entity';
 
-@Index(['name', 'badge']) // 👈 multiple column index
+@Index(['name']) // 👈 multiple column index
 @Entity()
 export class Coffee {
   @PrimaryGeneratedColumn('uuid')
@@ -22,9 +22,6 @@ export class Coffee {
 
   @Column({ nullable: true })
   description: string;
-
-  @Column()
-  bagde: string;
 
   // @Index() // 👈 indexing is optional, but it's recommended if you have a lot of data
   @Column()
