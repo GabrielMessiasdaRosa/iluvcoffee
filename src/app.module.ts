@@ -1,7 +1,8 @@
 import { Module } from '@nestjs/common';
 import { TypeOrmModule } from '@nestjs/typeorm';
-import { CoffeesModule } from './coffees/coffees.module';
+import { AppController } from './app.controller';
 import { CoffeeRatingModule } from './coffee-rating/coffee-rating.module';
+import { CoffeesModule } from './coffees/coffees.module';
 
 @Module({
   imports: [
@@ -18,5 +19,6 @@ import { CoffeeRatingModule } from './coffee-rating/coffee-rating.module';
       synchronize: true, // your entities will be synced with the database(recommended: disable in prod)
     }),
   ],
+  controllers: [AppController],
 })
 export class AppModule {}
