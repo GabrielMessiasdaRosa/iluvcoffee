@@ -1,9 +1,12 @@
-version: "3"
+version: '3'
 services:
   db:
-    image:  postgres
-    restart: always 
+    image: postgres
+    restart: always
     ports:
-      - "5432:5432"
+      - '5432:5432'
     environment:
-       POSTGRES_PASSWORD: pass123
+      POSTGRES_PASSWORD: pass123
+    volumes:
+      - ./postgres-data:/var/lib/postgresql/data
+## https://github.com/sindresorhus/guides/blob/main/docker-without-sudo.md
