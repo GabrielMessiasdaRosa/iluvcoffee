@@ -8,7 +8,9 @@ import { DatabaseModule } from './database/database.module';
 
 @Module({
   imports: [
-    ConfigModule.forRoot({}),
+    ConfigModule.forRoot({
+      ignoreEnvFile: true,
+    }),
     TypeOrmModule.forRoot({
       type: 'postgres', // type of our database
       host: process.env.DATABASE_HOST,
