@@ -1,9 +1,18 @@
 import { Module } from '@nestjs/common';
-import { CoffeeRatingService } from './coffee-rating.service';
 import { CoffeesModule } from 'src/coffees/coffees.module';
+import { DatabaseModule } from './../database/database.module';
+import { CoffeeRatingService } from './coffee-rating.service';
 
 @Module({
-  imports: [CoffeesModule],
-  providers: [CoffeeRatingService]
+  imports: [
+    DatabaseModule.register({
+      type: 'postgres',
+      host: 'localhost',
+      port: 5432,
+      password: 'pass123',
+    }),
+    CoffeesModule,
+  ],
+  providers: [CoffeeRatingService],
 })
 export class CoffeeRatingModule {}
