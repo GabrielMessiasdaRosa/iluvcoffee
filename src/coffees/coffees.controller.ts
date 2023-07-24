@@ -15,7 +15,14 @@ import { UpdateCoffeeDto } from './dto/update-coffee.dto';
 
 @Controller('coffees')
 export class CoffeesController {
-  constructor(private readonly coffeesService: CoffeesService) {}
+  constructor(
+    private readonly coffeesService: CoffeesService,
+  ) 
+  // avoid using request-scoped providers, impact on performance and benchmark, so use it only when needed
+  // @Inject(REQUEST) private readonly request: Request,
+  {
+    console.log("CoffeesController's  %%%% instatiated");
+  }
 
   @Get()
   findAll(@Query() paginationQueryDto: PaginationQueryDto) {

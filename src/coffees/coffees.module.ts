@@ -1,4 +1,4 @@
-import { Module } from '@nestjs/common';
+import { Module, Scope } from '@nestjs/common';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { Event } from 'src/events/entities/event.entity';
 import { Connection } from 'typeorm';
@@ -21,6 +21,8 @@ import { Flavor } from './entities/flavor.entity';
         const coffeeBrands = await Promise.resolve(['buddy brew', 'nescafe']);
         return coffeeBrands;
       },
+      // see about providers scope
+      scope: Scope.TRANSIENT,
     },
   ],
   exports: [CoffeesService],
