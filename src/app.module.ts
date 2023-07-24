@@ -4,6 +4,7 @@ import { CoffeeRatingModule } from './coffee-rating/coffee-rating.module';
 import { CoffeesModule } from './coffees/coffees.module';
 import { DatabaseModule } from './database/database.module';
 
+
 @Module({
   imports: [
     TypeOrmModule.forRoot({
@@ -20,5 +21,6 @@ import { DatabaseModule } from './database/database.module';
     CoffeeRatingModule,
     DatabaseModule,
   ],
+  controllers: [AppController],
 })
 export class AppModule {}
