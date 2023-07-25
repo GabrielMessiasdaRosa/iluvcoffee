@@ -10,6 +10,7 @@ import {
   UsePipes,
   ValidationPipe,
 } from '@nestjs/common';
+import { Public } from 'src/common/decorators/public.decorator';
 import { PaginationQueryDto } from 'src/common/dto/pagination-query.dto';
 import { CoffeesService } from './coffees.service';
 import { CreateCoffeeDto } from './dto/create-coffee.dto';
@@ -23,12 +24,15 @@ export class CoffeesController {
   ) {
     /* console.log("CoffeesController's  %%%% instatiated"); */
   }
+
+  @Public() // custom DECORATOR
   @UsePipes(ValidationPipe)
   @Get()
   findAll(@Query() paginationQueryDto: PaginationQueryDto) {
     return this.coffeesService.findAll(paginationQueryDto);
   }
-
+  
+  @Public()
   @Get(':id') // dynamic route
   findOne(@Param('id') id: string) {
     return this.coffeesService.findOne(id);
