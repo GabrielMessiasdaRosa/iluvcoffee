@@ -8,6 +8,8 @@ import { CoffeesModule } from './coffees/coffees.module';
 import { CommonModule } from './common/common.module';
 import appConfig from './config/app.config';
 
+// this is the main module, is used to bootstrap the application and is the root module of the application, is extremely recomended use modules to organize the application.
+
 @Module({
   imports: [
     TypeOrmModule.forRootAsync({

@@ -5,6 +5,9 @@ import { Request } from 'express';
 import { Observable } from 'rxjs';
 import { IS_PUBLIC_KEY } from 'src/common/decorators/public.decorator';
 
+// To build a guard you need to create a class that implements the CanActivate interface and implements the canActivate() method of the interface (the canActivate() method is used to determine if a request can be handled by a route handler)
+// The canActivate() method takes one argument, the context (in this case, ExecutionContext) and returns a boolean, a Promise of a boolean or an Observable of a boolean
+
 @Injectable()
 export class ApiKeyGuard implements CanActivate {
   constructor(

@@ -5,6 +5,12 @@ import {
   HttpException,
 } from '@nestjs/common';
 import { Response } from 'express';
+// a filter is a class annotated with the @Catch() decorator that implements the ExceptionFilter interface
+// the @Catch() decorator takes the exception type as an argument (in this case, HttpException) and returns a class that implements the ExceptionFilter interface
+// the ExceptionFilter interface has a catch() method that takes two arguments:
+// 1. the exception itself (in this case, HttpException) - the exception is an object that contains the status code and the response
+// 2. the host (in this case, ArgumentsHost) - the host is an object that contains the arguments that were passed to the controller method
+// the catch() method returns nothing (void) and is used to handle the exception and send a response to the client
 
 @Catch(HttpException)
 export class HttpExceptionFilter<T extends HttpException>
@@ -25,4 +31,3 @@ export class HttpExceptionFilter<T extends HttpException>
     });
   }
 }
- 
