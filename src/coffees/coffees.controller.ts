@@ -4,6 +4,7 @@ import {
   Delete,
   Get,
   Param,
+  ParseIntPipe,
   Patch,
   Post,
   Query,
@@ -43,6 +44,12 @@ export class CoffeesController {
   @Get(':id') // dynamic route
   findOne(@Param('id') id: string) {
     return this.coffeesService.findOne(id);
+  }
+  @Get(':pipe-test')
+  pipeTest(@Param('pipe-test', ParseIntPipe) pipeTest: string) {
+    console.log(pipeTest);
+    console.log(typeof pipeTest);
+    return pipeTest;
   }
 
   @Post()
