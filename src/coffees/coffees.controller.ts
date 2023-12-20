@@ -28,10 +28,11 @@ export class CoffeesController {
   @Public() // custom DECORATOR
   @UsePipes(ValidationPipe)
   @Get()
-  findAll(@Query() paginationQueryDto: PaginationQueryDto) {
+  async findAll(@Query() paginationQueryDto: PaginationQueryDto) {
+    await new Promise((resolve) => setTimeout(resolve, 5000));
     return this.coffeesService.findAll(paginationQueryDto);
   }
-  
+
   @Public()
   @Get(':id') // dynamic route
   findOne(@Param('id') id: string) {
