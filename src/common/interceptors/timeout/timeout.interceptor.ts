@@ -23,7 +23,7 @@ export class TimeoutInterceptor implements NestInterceptor {
         if (err instanceof TimeoutError) {
           throwError(() => error);
         }
-        return throwError(() => error);
+        return throwError(() => err);
       }),
     );
   }
