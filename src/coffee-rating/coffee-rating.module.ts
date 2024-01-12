@@ -7,9 +7,9 @@ import { CoffeeRatingService } from './coffee-rating.service';
   imports: [
     DatabaseModule.register({
       type: 'postgres',
-      host: 'localhost',
+      host: 'pgsqldb',
       port: 5432,
-      password: 'pass123',
+      password: 'postgres',
       username: 'postgres',
     }),
     CoffeesModule,
