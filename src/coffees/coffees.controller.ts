@@ -4,27 +4,52 @@ import {
   Delete,
   Get,
   Param,
+  ParseIntPipe,
   Patch,
   Post,
   Query,
+  UsePipes,
+  ValidationPipe,
 } from '@nestjs/common';
+import { Public } from 'src/common/decorators/public.decorator';
 import { PaginationQueryDto } from 'src/common/dto/pagination-query.dto';
 import { CoffeesService } from './coffees.service';
 import { CreateCoffeeDto } from './dto/create-coffee.dto';
 import { UpdateCoffeeDto } from './dto/update-coffee.dto';
 
+// @UsePipes(ValidationPipe) // apply validation pipe to all the routes of this controller (can be applied to a specific route as well as a class level decorator )
 @Controller('coffees')
 export class CoffeesController {
-  constructor(private readonly coffeesService: CoffeesService) {}
+  constructor(
+    private readonly coffeesService: CoffeesService, // avoid using request-scoped providers, impact on performance and benchmark, so use it only when needed // @Inject(REQUEST) private readonly request: Request,
+  ) {
+    /* console.log("CoffeesController's  %%%% instatiated"); */
+  }
 
+  @Public() // custom DECORATOR
+  @UsePipes(ValidationPipe)
   @Get()
-  findAll(@Query() paginationQueryDto: PaginationQueryDto) {
+  async findAll(@Query() paginationQueryDto: PaginationQueryDto) {
     return this.coffeesService.findAll(paginationQueryDto);
   }
 
+  @Public()
+  @Get('timeout-test')
+  async timeoutTest() {
+    await new Promise((resolve) => setTimeout(resolve, 5000));
+    return 'done';
+  }
+
+  @Public()
   @Get(':id') // dynamic route
   findOne(@Param('id') id: string) {
     return this.coffeesService.findOne(id);
+  }
+  @Get(':pipe-test')
+  pipeTest(@Param('pipe-test', ParseIntPipe) pipeTest: string) {
+    console.log(pipeTest);
+    console.log(typeof pipeTest);
+    return pipeTest;
   }
 
   @Post()

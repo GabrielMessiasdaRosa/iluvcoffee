@@ -8,6 +8,9 @@ import {
 } from 'typeorm';
 import { Flavor } from './flavor.entity';
 
+// this is the entity that represents the coffee table in the database (the table that stores the coffees) and it is used to create a table in the database and to create a class that represents the table in the application
+
+
 @Index(['name']) // 👈 multiple column index
 @Entity()
 export class Coffee {
